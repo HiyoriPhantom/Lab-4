@@ -1,2 +1,62 @@
 # Lab 4
 # Jacqueline
+# 16 December 
+
+
+# this function will find the sum of all numbers divisible by 3 or 5 up to 999
+def Mult_3_5():
+    # blank list
+    Mult3_5List = []
+
+    # 334 so that it includes 999
+    for i in range(334):
+        # 0 doesn't count
+        if i != 0:
+            # append
+            Mult3_5List.append(3*i)
+        # 5 will get bigger faster so we need to stop it at 200
+        if i != 0 and i < 200:
+            # append
+            Mult3_5List.append(5*i)
+
+    # so that all duplicates will go away
+    Mult3_5List = list(set(Mult3_5List)) 
+    # sort from small to big
+    Mult3_5List.sort()   
+    print(Mult3_5List)
+    Sum = 0
+    # for each of the numbers, add them up
+    for number in Mult3_5List:
+        Sum = Sum + number
+
+    print(Sum)
+    return Sum
+
+
+
+# this function finds the sum of all even fibonacci numbers less than 4 million
+def EvenFibs():
+    # Fib should start with 1, 1, 2! But for the purpose of this problem, it wants us to start with 1, 2
+    FibsList = [1, 2]
+    # this will also add values greater than 4 mil since it's just checking that the last index is < 4 mil, but they can be removed later
+    while FibsList[len(FibsList) - 1] < 4000000:
+        # append the addition of the last two items
+        FibsList.append(FibsList[len(FibsList) - 1] + FibsList[len(FibsList) - 2])
+    print(FibsList)
+    Sum = 0
+    # if % 2 is zero then that means no remainder, also make sure there's nothing > 4 mil
+    for number in FibsList:
+        if number%2 == 0 and number < 4000000:
+            # add to sum
+            Sum = Sum + number
+
+    print(Sum)
+    return Sum
+
+
+
+if __name__ == "__main__":
+    EvenFibs()
+
+
+
