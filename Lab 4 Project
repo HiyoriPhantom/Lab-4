@@ -55,8 +55,63 @@ def EvenFibs():
 
 
 
+# This function finds the prime factors of any given number
+def Prime(BigNum): 
+    PrimeFactors = []
+    # using the fact that nothing bigger than half of a number can be a factor for that number
+    for i in range(int(BigNum/2)):
+        # the number that it's testing shouldn't be 0, 1, or bigger than the remaining BigNum
+        if i != 0 and i != 1 and i <= BigNum:
+            # when there's no remainder...
+            while int(BigNum) % i == 0:
+                # adds the number and divides the BigNum by that number
+                PrimeFactors.append(int(i))
+                BigNum = BigNum/i
+                
+        # if i has surpassed the size of the BigNum, exit the loop
+        elif i > BigNum:
+            break
+    PrimeFactors.sort()
+    print(PrimeFactors)
+    return PrimeFactors
+
+# This function finds the largest palindrome number that's a product of two three digit numbers
+def PalinNum():
+    Num1 = 999
+    Num2 = 999
+    HighScore = 0
+    # only 3-digit numbers
+    while Num1 > 100:
+        while Num2 > 100:
+            TryNum = Num1 * Num2
+
+            # if the number is 6 digits
+            if len(str(TryNum)) == 6:
+                # see if it's a palindrome
+                if str(TryNum)[0] == str(TryNum)[5] and str(TryNum)[1] == str(TryNum)[4] and str(TryNum)[2] == str(TryNum)[3]:
+                    # if it is, update the high score if it's greater than the last high score
+                    if TryNum > HighScore:
+                        HighScore = TryNum
+                # try the next possible combo
+                Num2 = Num2 - 1
+
+            else:
+                # It's 5 digits
+                # see if it's a palindrome
+                if str(TryNum)[0] == str(TryNum)[4] and str(TryNum)[1] == str(TryNum)[3]:
+                    # if it is, update the high score if it's greater than the last high score
+                    if TryNum > HighScore:
+                        HighScore = TryNum
+                # try the next possible combo
+                Num2 = Num2 - 1
+                
+        # next combo
+        Num1 = Num1 - 1
+        Num2 = 999
+    print(HighScore)
+    return HighScore
+  
+
 if __name__ == "__main__":
-    EvenFibs()
-
-
+    PalinNum()
 
