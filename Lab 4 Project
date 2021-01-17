@@ -241,7 +241,25 @@ def GridProduct(GridList):
     return HighScore
 
 
-
+def TriangleNums():
+    TriangleNum = 0
+    # loop to some big number that should be big enough to cover it
+    for i in range(1, 100000):
+        # want to make sure that it doesn't count zero as a triangle num
+        # restarting each time in the loop
+        CountDivisors = 1
+        TriangleNum = TriangleNum + i
+        print(TriangleNum)
+        # the number itself is a divisor and we're skipping the top half of the number
+        for j in range(1,int(TriangleNum/2) + 1):
+            # add to the count if it's evenly divisible
+            if TriangleNum % j == 0:
+                CountDivisors = CountDivisors + 1
+        print("Count: " + str(CountDivisors))
+        # stop when count gets greater than 500
+        if CountDivisors > 500:
+            print("TriNum = " + str(TriangleNum))
+            return TriangleNum
 
 
 if __name__ == "__main__":
@@ -333,8 +351,9 @@ if __name__ == "__main__":
 
     # print(GridList[11][0])
 
-    GridProduct(GridList)
+    # GridProduct(GridList)
 
+    TriangleNums()
 
     # print(BigProduct(HugeNum))
 
