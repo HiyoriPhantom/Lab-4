@@ -111,44 +111,53 @@ def PalinNum():
     print(HighScore)
     return HighScore
   
-
-
-
-
+  
+  
+# this function finds the smallest multiple of 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 def SmallestMult():
-    # has to be a multiple of 2520
+    # has to be a multiple of 2520 = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
     TryNum = 2520
     i = 1
+    # checks all the mods - sees if they're divisible by all of these
     while TryNum % 11 != 0 or TryNum % 12 != 0 or TryNum % 13 != 0 or TryNum % 14 != 0 or TryNum % 15 != 0 or TryNum % 16 != 0 or TryNum % 17 != 0 or TryNum % 18 != 0 or TryNum % 19 != 0 or TryNum % 20 != 0:
         i = i + 1
+        # multiply by 2520 so that we stay within multiple of it
         TryNum = i * 2520
     print(TryNum)
     return TryNum
 
-
+# this function finds the difference between the sum of numbers squared up to 100 and the square of the sum of the numbers up to 100
 def SumSquareDiff():
     SumOSquares = 0
     SquareOSums = 0
+    # square all of the numbers up to 100 and keep them
     for i in range(101):
         SumOSquares = SumOSquares + i**2
+    # add up all the numbers up to 100 and then square them
     for i in range(101):
         SquareOSums = SquareOSums + i
     SquareOSums = SquareOSums ** 2
+
+    # take the difference
     print(SquareOSums - SumOSquares)
     return (SquareOSums - SumOSquares)
 
-
+# this function creates a list of primes up to 10000
 def BigPrime():
     ListOPrimes = []
+    # up to a huge number that will find it for sure
     for i in range(500000):
+        # check if prime
         if i != 1 and i != 0 and IsPrime(i):
+            # keep adding to list of primes until there are more than 10001 
             ListOPrimes.append(i)
             if len(ListOPrimes) == 10002:
                 return ListOPrimes[10001]
 
 
-# This is a helper function for BigPrime
+# This is a helper function for BigPrime, checks if a number is prime
 def IsPrime(Num):
+    # only need to check up to half of the number
     for i in range(int(Num/2)):
         if i != 0 and i != 1:
             if Num % i == 0:
@@ -157,17 +166,53 @@ def IsPrime(Num):
     return True
 
 
+# this function takes in a long list of digits and finds the biggest product made by 13 consecutive digits
 def BigProduct(HugeNum):
     HighScore = 0
     Digits = ""
     for i in range(len(HugeNum) - 12):
-        #print(HugeNum[i:i+13])
+        # tries each of the windows of 13 numbers
         TryProduct = int(HugeNum[i]) * int(HugeNum[i+1]) * int(HugeNum[i+2]) * int(HugeNum[i+3]) * int(HugeNum[i+4]) * int(HugeNum[i+5]) * int(HugeNum[i+6]) * int(HugeNum[i+7]) * int(HugeNum[i+8]) * int(HugeNum[i+9]) * int(HugeNum[i+10]) * int(HugeNum[i+11]) * int(HugeNum[i+12])
+        # keeps a high score
         if TryProduct > HighScore:
             HighScore = TryProduct
             Digits = HugeNum[i:i+13]
     # return Digits
     return HighScore
+
+
+    
+### this is new stuff
+
+# this function finds the pythagorean triplet where a + b + c = 1000
+def PythTriplets():
+    # in a strange scenario it would check 997, 2, and 1
+    for a in range(998):
+        for b in range(998):
+            # c is the difference b/w a and b and 1000
+            c = 1000 - a - b
+            # can't have c < 2 or sides of 0 length
+            if a < b < c and c > 2 and a != 0:
+                # check if pythag triplet
+                if a**2 + b**2 == c**2:
+                    print(a,b,c)
+                    return a*b*c
+
+
+# this function finds the sum of all primes up to 2 million; takes a VERY long time to run
+def SumPrimes():
+    # PrimesList = []
+    PrimeSum = 0
+    for i in range(2000001):
+    # check if prime, reusing IsPrime() :)
+        if i != 1 and i != 0 and i % 2 != 0 and IsPrime(i):
+            # keep adding to list of primes 
+            # PrimesList.append(i)
+            print(i)
+            PrimeSum = PrimeSum + i 
+
+    print(PrimeSum + 2)
+    return(PrimeSum + 2)
 
     
 
@@ -196,5 +241,5 @@ if __name__ == "__main__":
 71636269561882670428252483600823257530420752963450"
 
 
-    print(BigProduct(HugeNum))
+    SumPrimes()
 
